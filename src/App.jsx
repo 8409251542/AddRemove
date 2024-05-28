@@ -1,33 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import { useReducer } from "react"
+import { employees as intialPro} from "./data"
+import { employeesReducer } from "./reduser";
 function App() {
-  const [count, setCount] = useState(0)
+  const [employees,dispatch]=useReducer(employeesReducer,intialPro);
 
+  const handelAdd=(id)=>{
+    dispatch({
+      type:"Add_Data",
+      payload:{id}
+    })
+  }
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <>
+        <div className="flex">
+          <div className="pl-16 w-[25%] h-[100vh] overflow-auto">
+            <ul className="gap-3">
+            {
+              employees.map(({id,first_name,age,added})=>(
+                <ul key={id} className="flex gap-5 w-20px justify-evenly bg-slate-500">
+                  <li>{first_name}</li>
+                  <li>{age}</li>
+                  <li><button onClick={handelAdd(id)} className="p-5 bg-blue-500 ">Add</button></li>
+                </ul>
+              ))
+            }
+            </ul>
+
+          </div>
+          <div className="w-[30%] h-[100vh]">
+
+          </div>
+        </div>
+      </>
     </>
   )
 }
