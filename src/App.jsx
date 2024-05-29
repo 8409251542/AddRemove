@@ -31,18 +31,18 @@ function App() {
                   }`}>
                     <span className="font-medium">{first_name}</span>
                     <span className="ml-2 text-gray-600">{age}</span>
-                    {!added &&(<button onClick={() => handelAdd(id)} className="p-2 bg-blue-500 ">{added ? "Remove" : "Add"}</button>)}
+                    {!added &&(<button onClick={() => handelAdd(id)} className="px-3 py-1 text-white bg-blue-500 rounded-lg hover:bg-blue-600">{added ? "Remove" : "Add"}</button>)}
                   </li>
                 ))
               }
             </ul>
 
           </div>
-          <div className="w-full   h-[100vh]">
-          <h1 className="pl-16">Added Employ</h1>
-            <div className="pl-16 w-[25%] h-[100vh] overflow-auto">
+          <div className="w-3/4 p-4">
+          <h1 className="text-xl font-bold mb-4">Added Employees</h1>
+            <div className="space-y-2 overflow-auto">
             
-              <ul className="gap-3">
+              <ul className="space-y-2">
                 {employees.filter(pro => pro.added).map(({ id, first_name, age, added }) => (
                   <li key={id} className="flex gap-5 justify-evenly bg-slate-500 p-3">
                     <span>{first_name}</span>
